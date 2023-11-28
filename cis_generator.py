@@ -1,10 +1,18 @@
+
 import argparse
 from ssp import SSP
 from openpyxl import load_workbook
 
 class CIS_Control:
 
-    implementation_columns = {'Implemented': 2, 'Partially Implemented': 3, 'Planned': 4, 'Alternative Implementation': 5, 'Not Applicable': 6}
+    implementation_columns = {
+        'Implemented': 2,
+        'Partially Implemented': 3,
+        'Planned': 4,
+        'Alternative Implementation': 5,
+        'Not Applicable': 6
+    }
+
     origination_columns = {
         'Service Provider Corporate': 7,
         'Service Provider System Specific': 8,
@@ -14,7 +22,7 @@ class CIS_Control:
         'Shared': 12,
         'Inherited': 13,
         'Not Applicable': 14
-        }
+    }
 
     def __init__(self, control_object):
         self.number = control_object.number
@@ -22,16 +30,8 @@ class CIS_Control:
         self.control_origination = control_object.control_origination
 
     def __repr__(self):
-        return self.number
+        return f'CIS Control: {self.number}'
 
-    def get_columns(self):
-        relevant_columns = []
-        try:
-            for status in self.implementation_status:
-                relevant_columns.append(self.implementation_columns[status])
-            for origin in self.control_origination:
-                relevant_columns.append(self.origination_columns[origin])
-        except KeyError:
             pass
         return relevant_columns
 
